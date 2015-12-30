@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements DummySensorEngine
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //  0.5秒おきにデータを追加していくため
         mSensorEngine = new DummySensorEngine(500);
         mSensorEngine.setListener(this);
         mChart = (LineChart) findViewById(R.id.chart);
@@ -71,7 +72,8 @@ public class MainActivity extends AppCompatActivity implements DummySensorEngine
 
         LineDataSet set = data.getDataSetByIndex(0);
         if (set == null) {
-            set = new LineDataSet(null, "サンプルデータ"); //  解説
+            set = new LineDataSet(null, "サンプルデータ");
+            set.setColor(Color.BLUE);
             set.setDrawValues(false);
             data.addDataSet(set);
         }
@@ -84,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements DummySensorEngine
         //  データを追加したら必ずよばないといけない
         mChart.notifyDataSetChanged();
 
-        mChart.setVisibleXRangeMaximum(60); //  解説
+        mChart.setVisibleXRangeMaximum(60);
 
         mChart.moveViewToX(data.getXValCount() - 61);   //  移動する
     }
@@ -109,29 +111,29 @@ public class MainActivity extends AppCompatActivity implements DummySensorEngine
         mChart.setBackgroundColor(Color.LTGRAY);
 
         LineData data = new LineData();
-        data.setValueTextColor(Color.WHITE);
+        data.setValueTextColor(Color.BLACK);
 
         // add empty data
         mChart.setData(data);
 
         //  ラインの凡例の設定
-        Legend l = mChart.getLegend();      //  解説する
+        Legend l = mChart.getLegend();
         l.setForm(Legend.LegendForm.LINE);
-        l.setTextColor(Color.WHITE);
+        l.setTextColor(Color.BLACK);
 
         XAxis xl = mChart.getXAxis();
-        xl.setTextColor(Color.WHITE);
-        xl.setLabelsToSkip(9);              //解説する
+        xl.setTextColor(Color.BLACK);
+        xl.setLabelsToSkip(9);
 
         YAxis leftAxis = mChart.getAxisLeft();
-        leftAxis.setTextColor(Color.WHITE);
-        leftAxis.setAxisMaxValue(3.0f);     //  解説する
-        leftAxis.setAxisMinValue(-3.0f);    //  解説する
-        leftAxis.setStartAtZero(false);     //  解撤する
+        leftAxis.setTextColor(Color.BLACK);
+        leftAxis.setAxisMaxValue(3.0f);
+        leftAxis.setAxisMinValue(-3.0f);
+        leftAxis.setStartAtZero(false);
         leftAxis.setDrawGridLines(true);
 
         YAxis rightAxis = mChart.getAxisRight();
-        rightAxis.setEnabled(false);            //  解説する
+        rightAxis.setEnabled(false);
     }
 
     private void startMonitoring() {
