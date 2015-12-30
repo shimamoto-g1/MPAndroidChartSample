@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements DummySensorEngine
     }
 
     private void stopMonitoring() {
-        mSensorEngine.start();
+        mSensorEngine.stop();
         TextView textView = (TextView) findViewById(R.id.monitor_btn);
         textView.setText("モニター開始");
     }
